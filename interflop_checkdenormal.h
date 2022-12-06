@@ -56,6 +56,9 @@ void INTERFLOP_CHECKDENORMAL_API(finalize)(void *context);
 const char *INTERFLOP_CHECKDENORMAL_API(get_backend_name)(void);
 const char *INTERFLOP_CHECKDENORMAL_API(get_backend_version)(void);
 
+void INTERFLOP_CHECKDENORMAL_API(pre_init)(File *stream,
+                                           interflop_panic_t panic,
+                                           void **context);
 struct interflop_backend_interface_t
     INTERFLOP_CHECKDENORMAL_API(init)(void *context);
 

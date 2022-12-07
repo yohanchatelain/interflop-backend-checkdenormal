@@ -216,7 +216,7 @@ static const char key_ftz_str[] = "flush-to-zero";
 static struct argp_option options[] = {
     {key_ftz_str, KEY_FTZ, "FTZ", 0, "enable flush-to-zero", 0}, {0}};
 
-error_t parse_opt(int key, char *arg, struct argp_state *state) {
+static error_t parse_opt(int key, char *arg, struct argp_state *state) {
   checkdenormal_context_t *ctx = (checkdenormal_context_t *)state->input;
   switch (key) {
   case KEY_FTZ:

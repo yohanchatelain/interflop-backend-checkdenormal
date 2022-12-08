@@ -35,6 +35,7 @@
 #include <limits>
 #include <stddef.h>
 
+#include "interflop-stdlib/fma/interflop_fma.h"
 #include "interflop-stdlib/interflop.h"
 #include "interflop-stdlib/interflop_stdlib.h"
 #include "interflop-stdlib/iostream/logger.h"
@@ -145,27 +146,19 @@ void INTERFLOP_CHECKDENORMAL_API(div_float)(float a, float b, float *res,
 void INTERFLOP_CHECKDENORMAL_API(fma_float)(float a, float b, float c,
                                             float *res, void *context) {
 #ifdef IFCD_DOOP
-#ifdef USE_VERROU_FMA
-  *res = vr_fma(a, b, c);
-#else
-  interflop_panic("fma not implemented");
-#endif
-#endif
+  *res = interflop_fma_binary32(a, b, c);
   checkdenormal_context_t *ctx = (checkdenormal_context_t *)context;
   flushToZeroAndCheck(res, ctx);
+#endif
 }
 
 void INTERFLOP_CHECKDENORMAL_API(fma_double)(double a, double b, double c,
                                              double *res, void *context) {
 #ifdef IFCD_DOOP
-#ifdef USE_VERROU_FMA
-  *res = vr_fma(a, b, c);
-#else
-  interflop_panic("fma not implemented");
-#endif
-#endif
+  *res = interflop_fma_binary64(a, b, c);
   checkdenormal_context_t *ctx = (checkdenormal_context_t *)context;
   flushToZeroAndCheck(res, ctx);
+#endif
 }
 
 void INTERFLOP_CHECKDENORMAL_API(cast_double_to_float)(double a, float *res,

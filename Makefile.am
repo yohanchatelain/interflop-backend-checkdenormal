@@ -8,14 +8,14 @@ libinterflop_checkdenormal_la_SOURCES = \
 libinterflop_checkdenormal_la_CFLAGS = \
     -DBACKEND_HEADER="interflop_checkdenormal" \
     -I@INTERFLOP_STDLIB_PATH@/include/ \
-    -fno-stack-protector -fPIC
+    -fno-stack-protector
 libinterflop_checkdenormal_la_CXXFLAGS = \
     -DBACKEND_HEADER="interflop_checkdenormal" \
     -I@INTERFLOP_STDLIB_PATH@/include/ \
-    -fno-stack-protector -fPIC
+    -fno-stack-protector
 
 if WALL_CFLAGS
-libinterflop_checkdenormal_la_CFLAGS += -Wall -Wextra -Wno-varargs
+libinterflop_checkdenormal_la_CFLAGS += -Wall -Wextra -Wno-varargs -Og -g
 endif
 if LINK_INTERFLOP_STDLIB
 libinterflop_checkdenormal_la_LIBADD = @INTERFLOP_STDLIB_PATH@/lib/libinterflop_stdlib.la
